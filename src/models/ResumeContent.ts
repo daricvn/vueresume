@@ -1,8 +1,9 @@
 export default class ResumeContent{
     type: ContentType = ContentType.Text;
     data: String ='';
-    child: ResumeContent | undefined;
-    style: String | undefined;
+    length: Number = 0;
+    child: ResumeContent | undefined | null;
+    style: String | undefined | null;
 }
 
 export enum ContentType {

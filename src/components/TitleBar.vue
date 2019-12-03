@@ -38,17 +38,6 @@ export default class TitleBar extends Vue{
         user-select: none;
     }
 
-    .length-right-enter-active{
-        transition: all 0.8s cubic-bezier(.52,.84,.72,1.25);
-    }
-    .length-right-enter{
-        opacity: 0;
-        width: 0;
-    }
-    .length-right-enter-to{
-        opacity: 1;
-        width: 100%;
-    }
     .slide-fade-enter-active {
         display: inline-block;
         transition: all .4s ease;
