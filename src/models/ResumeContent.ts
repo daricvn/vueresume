@@ -1,11 +1,14 @@
 export default class ResumeContent{
     type: ContentType = ContentType.Text;
+    icon: String | undefined | null;
+    color: String | undefined | null;
     data: String ='';
-    length: Number = 0;
+    desc: String | undefined ='';
+    length: Number | String | null = 0;
     child: ResumeContent[] | undefined | null;
     style: String | undefined | null;
 }
 
 export enum ContentType {
-    Text, IconText, Bar, Column, Image, ImageText
+    Text, IconText, Bar, Column, Image, ImageText, Timeline, TimelineItem
 }

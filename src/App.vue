@@ -1,8 +1,10 @@
 <template>
-  <ThemeApp>
-    <InfoBoard />
-    <Content :showContent="showContent" />
-  </ThemeApp>
+  <q-layout>
+    <ThemeApp>
+      <InfoBoard />
+      <Content :maxWidth="720" :padLeft="20" :showContent="showContent" />
+    </ThemeApp>
+  </q-layout>
 </template>
 
 <script lang="ts">

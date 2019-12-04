@@ -6,6 +6,7 @@
 <style>
     body{
         --theme-color: rgb(100,14,22);
+        --q-color-primary:rgb(150,18,15);
         --theme-light-color: rgb(150,18,15);
         --theme-light-acolor: rgba(150,18,15,0.3);
         --theme-bar-color: rgb(43,160,255);
@@ -19,6 +20,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         display: flex;
+        min-height: 100vh;
     }
     .center {
         margin-left: 49%;

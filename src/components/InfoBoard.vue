@@ -8,8 +8,10 @@
 </template>
 
 <style scoped>
+h6{
+    font-weight: bold;
+}
     div.info-board{
-        height: 720px;
         min-width: 190px;
         flex-basis: 250px;
         float: left;

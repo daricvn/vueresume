@@ -32,14 +32,15 @@ div.bar {
   display: block;
   position: relative;
   background: var(--theme-bar-acolor);
-  height: 8px;
+  height: 9px;
   width: 100%;
-  margin: 4px 0px 4px 0px;
+  margin: 5px 0px 4px 0px;
 }
 div.bar .active-bar {
   display: block;
-  height: 8px;
+  height: 9px;
   background: var(--theme-bar-color);
+  opacity: 1 !important;
 }
 div.top-margin {
   margin-top: 5px;

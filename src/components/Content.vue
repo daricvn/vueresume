@@ -1,5 +1,5 @@
 <template>
-    <div class="side-block">
+    <div class="side-block" :style="{ 'max-width':maxWidth + 'px', 'padding-left':padLeft+'px' }">
         <div class="inline-content" v-if="showContent">
             <div v-for="history in historyData" :key="history.id">
                 <title-bar :words="history.title" :initialDelay="(history.id-1)*1500"></title-bar>
@@ -14,6 +14,7 @@
                         <flex-content :content="content"
                             :initialDelay="(800+(history.id-1)*1500)"
                             :index="index" />
+                        
                     </div>
                 </div>
             </div>
@@ -41,6 +42,8 @@ export default class Content extends Vue{
     historyData = MyHistory;
     contentType= ContentType;
     @Prop({ default: false, type: Boolean}) showContent ;
+    @Prop({ default: 800, type: Number | undefined}) maxWidth;
+    @Prop({ default: 10, type: Number | undefined}) padLeft;
     mounted() {
     }
 }
@@ -50,9 +53,7 @@ export default class Content extends Vue{
   .side-block{
     display: inline-block;
     width: 100%;
-    padding-left: 10px;
     padding-top: 10px;
-    max-width: 800px;
   }
   .child-content{
       padding-left: 15px;

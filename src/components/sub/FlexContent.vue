@@ -13,6 +13,9 @@
         </column>
       </div>
     </div>
+    <div v-else-if="content.type==contentType.Timeline">
+        <timeline :content="content" :delay="(initialDelay+index*120)" />
+    </div>
     <div v-else-if="!!content.child && content.child.length>0">
       <flex-content
         v-for="(item, index) in content.child"
@@ -37,12 +40,14 @@ import ResumeContent, { ContentType } from "../../models/ResumeContent";
 import DelayedText from "./DelayedText.vue";
 import DelayedBar from "./DelayedBar.vue";
 import Column from "./Column.vue";
+import Timeline from './Timeline.vue';
 
 @Component({
   components: {
     DelayedText,
     DelayedBar,
-    Column
+    Column,
+    Timeline
   }
 })
 export default class FlexContent extends Vue {
