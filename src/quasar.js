@@ -5,7 +5,7 @@ import 'quasar/dist/quasar.ie.polyfills'
 import '@quasar/extras/roboto-font/roboto-font.css'
 import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
-import { Quasar, QLayout, QTimeline, QTimelineEntry } from 'quasar'
+import { Quasar, QLayout, QTimeline, QTimelineEntry, QIcon } from 'quasar'
 
 
 Vue.use(Quasar, {
@@ -13,6 +13,7 @@ Vue.use(Quasar, {
   components: { 
     QLayout,
     QTimeline,
+    QIcon,
     QTimelineEntry/* not needed if importStrategy is not 'manual' */ },
   directives: { /* not needed if importStrategy is not 'manual' */ },
   plugins: {

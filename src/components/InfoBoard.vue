@@ -4,6 +4,15 @@
         <div class="block text-center white--text">
             <h6>{{ candidate.name }}</h6>
         </div>
+        <div class="row" style="margin-top: 10px" v-if="!!candidate.socialNetworks">
+            <div class="col-4">{{ string['socialNetworks'] }}</div>
+            <div class="col-8">
+                <div class="row" v-for="(item, index) in candidate.socialNetworks" :key="index">
+                    <q-icon :name="item.icon" v-if="!!item.icon" class="white--text" />
+                    <a :href="item.ref">{{ !!item.alias ? item.alias : item.ref }}</a>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -49,11 +58,12 @@ h6{
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import { MyContact } from '../data/MyContact';
+import { Language } from '../resources/LanguageService';
 
 @Component
 export default class InfoBoard extends Vue{
     candidate = MyContact;
-
+    string= Language;
     mounted() {
         setTimeout(()=>{
             this.$refs.board.className += " show";
