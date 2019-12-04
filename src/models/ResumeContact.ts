@@ -1,5 +1,6 @@
 export default class ResumeContact{
     name: String | undefined;
+    avatar?: Link | undefined;
     addressLines: String[] | String | undefined | null;
     socialNetworks?: Link[] | Link | undefined | null;
     email?: Link[] | Link | undefined | null;
