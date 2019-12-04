@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex; margin-top: 5px; margin-bottom: 10px;">
     <transition name="slide-fade" appear>
-      <div :style="{ 'transition-delay': delay +'ms' }" class="bar-title">Content</div>
+      <div :style="{ 'transition-delay': delay +'ms' }" class="bar-title">{{title}}</div>
     </transition>
     <transition name="length-right" appear @after-enter="inlineBar=true">
       <div
@@ -31,7 +31,7 @@ div.bar-block {
 div.bar {
   display: block;
   position: relative;
-  background: var(--theme-light-acolor);
+  background: var(--theme-bar-acolor);
   height: 8px;
   width: 100%;
   margin: 4px 0px 4px 0px;
@@ -39,7 +39,7 @@ div.bar {
 div.bar .active-bar {
   display: block;
   height: 8px;
-  background: var(--theme-light-color);
+  background: var(--theme-bar-color);
 }
 div.top-margin {
   margin-top: 5px;
@@ -70,6 +70,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class DelayedBar extends Vue {
   @Prop({ default: 0, type: Number }) delay;
   @Prop({ default: 0, type: Number | String }) width;
+  @Prop({ default: null, type: String | undefined | null}) title;
   inlineBar = false;
 
   get barWidth() {

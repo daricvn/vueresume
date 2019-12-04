@@ -15,6 +15,9 @@ export const MyHistory: ResumeSection[]=[
         { type: ContentType.Text, data:'Some text in here 2', length : 0, child: null, style: null },
         { type: ContentType.Text, data:'Some text in here 3', length : 0, child: null, style: null },
         { type: ContentType.Text, data:'Some text in here 4', length : 0, child: null, style: null },
-        { type: ContentType.Bar, data:'Some text in here 5', length : 90, child: null, style: null }
+        { type: ContentType.Column, data:'', length : 0, child: [ 
+            { type: ContentType.Bar, data:'English', length : 80, child: null, style: null },
+            { type: ContentType.Bar, data:'English', length : 80, child: null, style: null }
+        ], style: null }
     ]}
 ]
