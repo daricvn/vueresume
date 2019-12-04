@@ -2,7 +2,7 @@
     <div class="info-board" ref="board">
         <div class="avatar center"></div>
         <div class="block text-center white--text">
-            <h6>{{ candidate }}</h6>
+            <h6>{{ candidate.name }}</h6>
         </div>
     </div>
 </template>
@@ -48,10 +48,11 @@ h6{
 
 <script>
 import { Vue, Component } from 'vue-property-decorator';
+import { MyContact } from '../data/MyContact';
 
 @Component
 export default class InfoBoard extends Vue{
-    candidate = "Darick Nguyen";
+    candidate = MyContact;
 
     mounted() {
         setTimeout(()=>{
