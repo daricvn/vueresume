@@ -1,5 +1,5 @@
 <template>
-  <div :style="styles">
+  <div class="bar-container" :style="styles">
     <div v-if="content.type==contentType.Column">
       <div v-if="!!content.child && content.child.length>0" class="flex-box">
         <column v-for="(item, index) in content.child"
@@ -16,20 +16,20 @@
     <div v-else-if="content.type==contentType.Timeline">
         <timeline :content="content" :delay="(initialDelay+index*120)" />
     </div>
-    <div v-else-if="!!content.child && content.child.length>0">
-      <flex-content
-        v-for="(item, index) in content.child"
-        :key="index"
-        :content="item"
-        :initialDelay="initialDelay+50*index"
-        :index="index"
-      />
-    </div>
     <div v-else-if="content.type==contentType.Text">
       <delayed-text :delay="(initialDelay+index*120)">{{ content.data }}</delayed-text>
     </div>
     <div v-else-if="content.type==contentType.Bar">
-      <delayed-bar :title="content.data" :width="content.length" :delay="(initialDelay+index*120)"></delayed-bar>
+      <delayed-bar :color="content.color" :bg-color="content.bgColor" :title="content.data" :width="content.length" :delay="(initialDelay+index*120)"></delayed-bar>
+    </div>
+    <div v-if="!!content.child && content.child.length>0">
+      <flex-content
+        v-for="(item, index) in content.child"
+        :key="index"
+        :content="item"
+        :initialDelay="initialDelay+100+100*index"
+        :index="index"
+      />
     </div>
   </div>
 </template>
@@ -64,5 +64,8 @@ div.flex-box {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
+}
+div.bar-container{
+  width:100%;
 }
 </style>

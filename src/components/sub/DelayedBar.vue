@@ -7,11 +7,13 @@
       <div
         :style="{ 'transition-delay': (100+delay) +'ms' }"
         class="bar"
+        :class="backColor"
         style="transition-duration: 0.4s"
       >
         <div class="bar-block" :style="{ 'width': barWidth }">
           <transition name="length-right">
-            <div class="active-bar" v-if="inlineBar"></div>
+            <div class="active-bar" 
+              :class="barColor" v-if="inlineBar"></div>
           </transition>
         </div>
       </div>
@@ -31,15 +33,19 @@ div.bar-block {
 div.bar {
   display: block;
   position: relative;
-  background: var(--theme-bar-acolor);
   height: 9px;
   width: 100%;
   margin: 5px 0px 4px 0px;
 }
+div.bar.default{
+  background: var(--theme-bar-acolor);
+}
+div.bar.default .active-bar{
+  background: var(--theme-bar-color);
+}
 div.bar .active-bar {
   display: block;
   height: 9px;
-  background: var(--theme-bar-color);
   opacity: 1 !important;
 }
 div.top-margin {
@@ -72,6 +78,8 @@ export default class DelayedBar extends Vue {
   @Prop({ default: 0, type: Number }) delay;
   @Prop({ default: 0, type: Number | String }) width;
   @Prop({ default: null, type: String | undefined | null}) title;
+  @Prop({ default: null, type: String | null}) color;
+  @Prop({ default: null, type: String | null}) bgColor;
   inlineBar = false;
 
   get barWidth() {
@@ -80,6 +88,13 @@ export default class DelayedBar extends Vue {
       return this.width;
     }
     return this.width + "%";
+  }
+
+  get barColor(){
+      return !this.color ? ['default']:['default', this.color];
+  }
+  get backColor(){
+      return !this.bgColor ? ['bar','default']:['bar', this.bgColor];
   }
 }
 </script>

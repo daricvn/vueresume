@@ -32,6 +32,7 @@ export default class Timeline extends Vue{
 <style>
 h6.q-timeline__title{
     margin-bottom: 4px !important;
+    padding: 1px !important;
 }
 .q-timeline__content{
     padding-bottom: 12px !important;

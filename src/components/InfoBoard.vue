@@ -1,15 +1,54 @@
 <template>
     <div class="info-board" ref="board">
-        <div class="avatar center"></div>
+        <div class="avatar center" v-if="candidate.avatar"></div>
+        <div class="row q-pt-lg" v-if="!candidate.avatar"></div>
         <div class="block text-center white--text">
             <h6>{{ candidate.name }}</h6>
         </div>
         <div class="row" style="margin-top: 10px" v-if="!!candidate.socialNetworks">
-            <div class="col-4">{{ string['socialNetworks'] }}</div>
-            <div class="col-8">
-                <div class="row" v-for="(item, index) in candidate.socialNetworks" :key="index">
-                    <q-icon :name="item.icon" v-if="!!item.icon" class="white--text" />
-                    <a :href="item.ref">{{ !!item.alias ? item.alias : item.ref }}</a>
+            <div class="row">
+                <div class="col-5 white--text text-right q-pr-sm text-weight-bold q-pt-sm">{{ string['address'] }}</div>
+                <div class="col-7 q-pl-sm small-border q-pt-sm">
+                    <div class="white--text" v-for="(address, index) in candidate.addressLines" :key="index">
+                        {{ address }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 white--text text-right q-pr-sm text-weight-bold q-pt-md">{{ string['phone'] }}</div>
+                <div class="col-7 q-pl-sm small-border white--text q-pt-md">
+                    {{ candidate.phone }}
+                </div>
+            </div>
+            <div class="row" v-if="candidate.socialNetworks">
+                <div class="col-5 white--text  q-pr-sm text-right text-weight-bold  q-pt-md">{{ string['socialNetworks'] }}</div>
+                <div class="col-7 q-pl-sm small-border q-pt-md">
+                    <div class="row" v-for="(item, index) in candidate.socialNetworks" :key="index">
+                        <a class="white--text" :href="item.ref" target="_blank"><q-icon :name="item.icon" v-if="!!item.icon" class="white--text q-mr-sm" size="18pt" />
+                        <span class="line-height">{{ !!item.alias ? item.alias : item.ref }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="candidate.otherLinks">
+                <div class="col-5 white--text  q-pr-sm text-right text-weight-bold  q-pt-md">{{ string['otherLinks'] }}</div>
+                <div class="col-7 q-pl-sm small-border q-pt-md">
+                    <div class="row" v-for="(item, index) in candidate.otherLinks" :key="index">
+                        <a class="white--text" :href="item.ref" target="_blank"><q-icon :name="item.icon" v-if="!!item.icon" class="white--text q-mr-sm" size="18pt" />
+                        <span class="line-height">{{ !!item.alias ? item.alias : item.ref }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row q-pt-lg" style="margin-top: 55px">
+            <div v-for="(skill,index) in skills" :key="index" class="row">
+                <div class="col-4 text-right line-height white--text">{{ skill.desc }}</div>
+                <div class="col-8 q-pr-sm">
+                    <flex-content  
+                    :content="skill"
+                    :initialDelay="(400+(index)*50)"
+                    :index="index" ></flex-content>
                 </div>
             </div>
         </div>
@@ -20,9 +59,18 @@
 h6{
     font-weight: bold;
 }
+.row{
+    width: 100%;
+}
+.small-border{
+    border-left: 1px solid white;
+}
+.line-height{
+    line-height: 24px;
+}
     div.info-board{
-        min-width: 190px;
-        flex-basis: 250px;
+        min-width: 220px;
+        flex-basis: 280px;
         float: left;
         padding: 10px 5px 10px 10px;
         background: linear-gradient(to top right, var(--theme-color),var(--theme-light-color));
@@ -58,12 +106,20 @@ h6{
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import { MyContact } from '../data/MyContact';
+import { Skills } from '../data/Skill';
 import { Language } from '../resources/LanguageService';
+import FlexContent from './sub/FlexContent.vue';
 
-@Component
+@Component({
+    components:{
+        FlexContent
+    }
+}
+)
 export default class InfoBoard extends Vue{
     candidate = MyContact;
     string= Language;
+    skills= Skills;
     mounted() {
         setTimeout(()=>{
             this.$refs.board.className += " show";

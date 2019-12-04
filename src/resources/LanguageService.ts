@@ -1,2 +1,2 @@
-import * as lang from './en-US.json';
-export const Language= lang;
+import { lang } from './en-US';
+export const Language = lang;

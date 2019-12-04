@@ -10,7 +10,7 @@
         --theme-light-color: rgb(150,18,15);
         --theme-light-acolor: rgba(150,18,15,0.3);
         --theme-bar-color: rgb(43,160,255);
-        --theme-bar-acolor: rgba(43,160,255,0.4);
+        --theme-bar-acolor: rgb(180,224,255);
         --theme-inverse-color: white;
         --theme-text-color: black;
         overflow-x: hidden;
