@@ -76,8 +76,8 @@ h6{
     line-height: 24px;
 }
     div.info-board{
-        min-width: 220px;
-        flex-basis: 280px;
+        min-width: 240px;
+        flex-basis: 290px;
         float: left;
         padding: 10px 5px 10px 10px;
         background: linear-gradient(to top right, var(--theme-color),var(--theme-light-color));
