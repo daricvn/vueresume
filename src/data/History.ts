@@ -18,5 +18,11 @@ export const MyHistory: ResumeSection[]=[
         { type: ContentType.Title, data:'Title', desc:'', length : '2014', child: null, style: null },
         { type: ContentType.Line, data:'', length: 4 },
         { type: ContentType.Text, data:'Some other text in here', desc:'', length : 10, child: null, style: null }
+    ]},
+    { id: 4, title:'Other section', contents:[
+        { type: ContentType.Text, data:'Some text in here 1', desc:'', length : 0, child: null, style: null },
+        { type: ContentType.IconText, icon:'star', data:'Some text in here 2'},
+        { type: ContentType.IconText, icon:'home', data:'Some text in here 3'},
+        { type: ContentType.IconText, icon:'call', data:'Some text in here 4'}
     ]}
 ]

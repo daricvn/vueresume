@@ -1,7 +1,7 @@
 <template>
     <div class="info-board" ref="board">
         <div class="avatar center" v-if="candidate.avatar"></div>
-        <div class="row q-pt-lg" v-if="!candidate.avatar"></div>
+        <div class="row q-pt-md" v-if="!candidate.avatar"></div>
         <div class="block text-center white--text">
             <h6>{{ candidate.name }}</h6>
         </div>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="row q-pt-md" style="margin-top: 45px">
+        <div class="row q-pt-md" style="margin-top: 25px">
             <div v-for="(content,index) in info" :key="index" class="row q-mt-md">
                 <div class="col-4 text-right line-height white--text text-weight-bold">
                     <delayed-text :delay="(400)">

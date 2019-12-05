@@ -1,20 +1,21 @@
 <template>
-    <div class="side-block" :style="{ 'max-width':maxWidth + 'px', 'padding-left':padLeft+'px' }">
-        <div class="inline-content" v-if="showContent">
-            <div v-for="history in historyData" :key="history.id">
-                <title-bar :words="history.title" :initialDelay="(history.id-1)*1500"></title-bar>
-                <div class="child-content">
-                    <div v-for="(content, index) in history.contents" :key="index">
-                        <!-- <div v-if="content.type==contentType.Text">
-                            <delayed-text :delay="(800+(history.id-1)*1500+index*120)">{{ content.data }}</delayed-text>
+    <div class="print-content">
+        <div :style="{ 'max-width':maxWidth + 'px', 'padding-left':padLeft+'px' }">
+            <div class="inline-content" v-if="showContent">
+                <div v-for="history in historyData" :key="history.id">
+                    <title-bar :words="history.title" :initialDelay="(history.id-1)*1500"></title-bar>
+                    <div class="child-content">
+                        <div v-for="(content, index) in history.contents" :key="index">
+                            <!-- <div v-if="content.type==contentType.Text">
+                                <delayed-text :delay="(800+(history.id-1)*1500+index*120)">{{ content.data }}</delayed-text>
+                            </div>
+                            <div v-else-if="content.type==contentType.Bar">
+                                <delayed-bar :width="content.length" :delay="(800+(history.id-1)*1500+index*120)"></delayed-bar>
+                            </div> -->
+                            <flex-content :content="content"
+                                :initialDelay="(800+(history.id-1)*1500)"
+                                :index="index" />
                         </div>
-                        <div v-else-if="content.type==contentType.Bar">
-                            <delayed-bar :width="content.length" :delay="(800+(history.id-1)*1500+index*120)"></delayed-bar>
-                        </div> -->
-                        <flex-content :content="content"
-                            :initialDelay="(800+(history.id-1)*1500)"
-                            :index="index" />
-                        
                     </div>
                 </div>
             </div>
@@ -55,9 +56,22 @@ export default class Content extends Vue{
     width: 100%;
     padding-top: 10px;
   }
+  div.print-content{
+    display: block;
+    width:88%;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
   .child-content{
       padding-left: 15px;
       padding-top: 5px;
       padding-bottom: 10px;
+  }
+  @media print {
+    .print-content{
+        height: auto !important;
+        overflow: visible;
+    }
   }
 </style>
