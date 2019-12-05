@@ -7,5 +7,6 @@ export const lang={
     "history":"History",
     "address":"Address",
     "phone":"Phone",
-    "otherLinks":"Other Links"
+    "otherLinks":"Other Links",
+    "email":"Email"
 }

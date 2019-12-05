@@ -1,19 +1,19 @@
 import ResumeContact from '@/models/ResumeContact';
 
 export const MyContact: ResumeContact={
-    name:'Darick Nguyen',
+    name:'Your Name',
     addressLines:[
-        "Tan Binh",
-        "Ho Chi Minh city",
-        "Vietnam"
+        "Street",
+        "State",
+        "Country"
     ],
-    phone:'+8485 885 6960',
-    email:{ icon: null, alias: null, ref:'mailto:daricvn@gmail.com' },
+    phone:'+phone number',
+    email:{ icon: null, alias: 'your@email.com', ref:'mailto:your@email.com' },
     socialNetworks:[
-        { icon: 'fab fa-facebook', alias: 'Facebook', ref:'https://fb.com/daricvn' },
-        { icon: 'fab fa-linkedin', alias: 'LinkedIn', ref:'https://www.linkedin.com/in/daricvn'}
+        { icon: 'fab fa-facebook', alias: 'Facebook', ref:'https://fb.com/yourfacebook' },
+        { icon: 'fab fa-linkedin', alias: 'LinkedIn', ref:'https://www.linkedin.com/in/yourlinkedin'}
     ],
     otherLinks:[
-        { icon: 'fab fa-github', alias: 'GitHub', ref:'https://github.com/daricvn'}
+        { icon: 'fab fa-github', alias: 'GitHub', ref:'https://github.com/yourgithub'}
     ]
 }

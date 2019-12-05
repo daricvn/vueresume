@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade" appear>
-    <div :style="{ 'transition-delay': delay +'ms' }" class="top-margin block theme-text">
+    <div :style="{ 'transition-delay': delay +'ms' }" class="top-margin block theme-text" style="display: inline-block;">
       <slot></slot>
     </div>
   </transition>

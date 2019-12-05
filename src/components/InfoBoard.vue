@@ -20,13 +20,17 @@
                     {{ candidate.phone }}
                 </div>
             </div>
+            <div class="row">
+                <div class="col-5 white--text text-right q-pr-sm text-weight-bold q-pt-md">{{ string['email'] }}</div>
+                <div class="col-7 q-pl-sm small-border white--text q-pt-md">
+                    <flex-link :link="candidate.email" />
+                </div>
+            </div>
             <div class="row" v-if="candidate.socialNetworks">
                 <div class="col-5 white--text  q-pr-sm text-right text-weight-bold  q-pt-md">{{ string['socialNetworks'] }}</div>
                 <div class="col-7 q-pl-sm small-border q-pt-md">
                     <div class="row" v-for="(item, index) in candidate.socialNetworks" :key="index">
-                        <a class="white--text" :href="item.ref" target="_blank"><q-icon :name="item.icon" v-if="!!item.icon" class="white--text q-mr-sm" size="18pt" />
-                        <span class="line-height">{{ !!item.alias ? item.alias : item.ref }}</span>
-                        </a>
+                        <flex-link :link="item" />
                     </div>
                 </div>
             </div>
@@ -34,21 +38,25 @@
                 <div class="col-5 white--text  q-pr-sm text-right text-weight-bold  q-pt-md">{{ string['otherLinks'] }}</div>
                 <div class="col-7 q-pl-sm small-border q-pt-md">
                     <div class="row" v-for="(item, index) in candidate.otherLinks" :key="index">
-                        <a class="white--text" :href="item.ref" target="_blank"><q-icon :name="item.icon" v-if="!!item.icon" class="white--text q-mr-sm" size="18pt" />
-                        <span class="line-height">{{ !!item.alias ? item.alias : item.ref }}</span>
-                        </a>
+                        <flex-link :link="item" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="row q-pt-lg" style="margin-top: 55px">
             <div v-for="(skill,index) in skills" :key="index" class="row">
-                <div class="col-4 text-right line-height white--text">{{ skill.desc }}</div>
-                <div class="col-8 q-pr-sm">
+                <div class="col-3 text-right line-height white--text">
                     <flex-content  
                     :content="skill"
-                    :initialDelay="(400+(index)*50)"
+                    :initialDelay="400"
                     :index="index" ></flex-content>
+                </div>
+                <div class="col-9 q-pr-sm q-pt-sm q-pl-sm">
+                    <flex-content 
+                    v-for="(item, i) in skill.child" :key="i"
+                    :content="item"
+                    :initialDelay="500"
+                    :index="i" ></flex-content>
                 </div>
             </div>
         </div>
@@ -107,12 +115,14 @@ h6{
 import { Vue, Component } from 'vue-property-decorator';
 import { MyContact } from '../data/MyContact';
 import { Skills } from '../data/Skill';
-import { Language } from '../resources/LanguageService';
+import Language from '../resources/LanguageService';
 import FlexContent from './sub/FlexContent.vue';
+import FlexLink from './sub/FlexLink.vue';
 
 @Component({
     components:{
-        FlexContent
+        FlexContent,
+        FlexLink
     }
 }
 )

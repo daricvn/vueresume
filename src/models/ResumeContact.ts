@@ -6,6 +6,7 @@ export default class ResumeContact{
     email?: Link[] | Link | undefined | null;
     phone?: String[] | String | undefined;
     otherLinks?: Link[] | Link | undefined;
+    skipChild?: Boolean | undefined;
 }
 
 export class Link{

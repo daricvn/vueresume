@@ -8,9 +8,10 @@ export default class ResumeContent{
     length?: Number | String | null = 0;
     child?: ResumeContent[] | undefined | null;
     style?: String | undefined | null;
+    skipChild?: Boolean | undefined;
 }
 
 export enum ContentType {
     Text, IconText, Bar, Column, Image, ImageText, Timeline, TimelineItem,
-    Chip, Title, GrandText
+    Chip, ChipList, Title, Line
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bar-container" :style="styles">
+  <div :style="styles">
     <div v-if="content.type==contentType.Column">
       <div v-if="!!content.child && content.child.length>0" class="flex-box">
         <column v-for="(item, index) in content.child"
@@ -22,7 +22,39 @@
     <div v-else-if="content.type==contentType.Bar">
       <delayed-bar :color="content.color" :bg-color="content.bgColor" :title="content.data" :width="content.length" :delay="(initialDelay+index*120)"></delayed-bar>
     </div>
-    <div v-if="!!content.child && content.child.length>0">
+    <div v-else-if="content.type==contentType.Title">
+      <delayed-text :delay="(initialDelay+index*120)">
+        <h6 class="q-mb-none" :class="content.color">
+        {{ content.data }}
+        <span class="text-overline" v-if="!!content.length">- {{ content.length }}</span>
+        </h6>
+      </delayed-text>
+    </div>
+    <div v-else-if="content.type==contentType.Line">
+      <delayed-text :delay="(initialDelay+index*120)">
+        <q-separator style="width: 85%" />
+      </delayed-text>
+    </div>
+    <div v-else-if="content.type==contentType.ChipList && !!content.child">
+      <delayed-text :delay="(initialDelay+index*60)">
+        <q-chip 
+          v-for="(item, i) in content.child" :key="i"
+          :icon="item.icon ? item.icon : undefined"
+          :color="item.color?item.color:undefined"
+          :text-color="item.desc ? item.desc:undefined"
+          :class="item.style"
+          :style="{ transitionDelay: (initialDelay+i*100)}">{{ item.data }}</q-chip>
+      </delayed-text>
+    </div>
+    <div v-else-if="content.type==contentType.Chip">
+      <delayed-text :delay="(initialDelay+index*60)">
+        <q-chip :icon="content.icon ? content.icon : undefined"
+          :color="content.color?content.color:undefined"
+          :text-color="content.desc ? content.desc:undefined"
+          :class="content.style">{{ content.data }}</q-chip>
+      </delayed-text>
+    </div>
+    <div v-if="content.type!=contentType.ChipList && !content.skipChild && !!content.child && content.child.length>0">
       <flex-content
         v-for="(item, index) in content.child"
         :key="index"
