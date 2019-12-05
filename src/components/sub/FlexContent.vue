@@ -1,5 +1,6 @@
 <template>
   <div :style="styles">
+    <!-- Column style -->
     <div v-if="content.type==contentType.Column">
       <div v-if="!!content.child && content.child.length>0" class="flex-box">
         <column v-for="(item, index) in content.child"
@@ -13,15 +14,22 @@
         </column>
       </div>
     </div>
+    <!-- Timeline -->
     <div v-else-if="content.type==contentType.Timeline">
         <timeline :content="content" :delay="(initialDelay+index*120)" />
     </div>
+    <!-- Text -->
     <div v-else-if="content.type==contentType.Text">
-      <delayed-text :delay="(initialDelay+index*120)">{{ content.data }}</delayed-text>
+      <delayed-text :delay="(initialDelay+index*120)" :padLeft="content.length">{{ content.data }}</delayed-text>
     </div>
+    <div v-else-if="content.type==contentType.IconText">
+      <icon-text :delay="(initialDelay+index*120)" size="18px" :icon="content.icon" :color="content.color">{{ content.data }}</icon-text>
+    </div>
+    <!-- Bar -->
     <div v-else-if="content.type==contentType.Bar">
       <delayed-bar :color="content.color" :bg-color="content.bgColor" :title="content.data" :width="content.length" :delay="(initialDelay+index*120)"></delayed-bar>
     </div>
+    <!-- Title -->
     <div v-else-if="content.type==contentType.Title">
       <delayed-text :delay="(initialDelay+index*120)">
         <h6 class="q-mb-none" :class="content.color">
@@ -30,11 +38,13 @@
         </h6>
       </delayed-text>
     </div>
+    <!-- Line -->
     <div v-else-if="content.type==contentType.Line">
       <delayed-text :delay="(initialDelay+index*120)">
-        <q-separator style="width: 85%" />
+        <q-separator :style="{ width:'85%', marginBottom: content.length+'px'}" />
       </delayed-text>
     </div>
+    <!-- Chip  -->
     <div v-else-if="content.type==contentType.ChipList && !!content.child">
       <delayed-text :delay="(initialDelay+index*60)">
         <q-chip 
@@ -58,6 +68,7 @@
           :class="content.style">{{ content.data }}</q-chip>
       </delayed-text>
     </div>
+    <!-- Child render -->
     <div v-if="content.type!=contentType.ChipList && !content.skipChild && !!content.child && content.child.length>0">
       <flex-content
         v-for="(item, index) in content.child"
@@ -77,13 +88,15 @@ import DelayedText from "./DelayedText.vue";
 import DelayedBar from "./DelayedBar.vue";
 import Column from "./Column.vue";
 import Timeline from './Timeline.vue';
+import IconText from './IconText.vue';
 
 @Component({
   components: {
     DelayedText,
     DelayedBar,
     Column,
-    Timeline
+    Timeline,
+    IconText
   }
 })
 export default class FlexContent extends Vue {

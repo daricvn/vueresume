@@ -14,12 +14,9 @@ export const MyHistory: ResumeSection[]=[
     ]},
     { id: 3, title:'Project', contents:[
         { type: ContentType.Text, data:'Some text in here 1', desc:'', length : 0, child: null, style: null },
-        { type: ContentType.Text, data:'Some text in here 2', desc:'', length : 0, child: null, style: null },
-        { type: ContentType.ChipList, data:'', child: [
-            { type: ContentType.Chip, data:'Test 1', color:'red', desc:'white' },
-            { type: ContentType.Chip, data:'Test 4', color:'blue', desc:'white' },
-        ] }, 
+        { type: ContentType.IconText, icon:'star', data:'Some text in here 2'},
         { type: ContentType.Title, data:'Title', desc:'', length : '2014', child: null, style: null },
-        { type: ContentType.Line, data:''}
+        { type: ContentType.Line, data:'', length: 4 },
+        { type: ContentType.Text, data:'Some other text in here', desc:'', length : 10, child: null, style: null }
     ]}
 ]
