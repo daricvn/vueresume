@@ -43,19 +43,18 @@
                 </div>
             </div>
         </div>
-        <div class="row q-pt-lg" style="margin-top: 55px">
-            <div v-for="(skill,index) in skills" :key="index" class="row">
-                <div class="col-3 text-right line-height white--text">
-                    <flex-content  
-                    :content="skill"
-                    :initialDelay="400"
-                    :index="index" ></flex-content>
+        <div class="row q-pt-md" style="margin-top: 45px">
+            <div v-for="(content,index) in info" :key="index" class="row q-mt-md">
+                <div class="col-4 text-right line-height white--text text-weight-bold">
+                    <delayed-text :delay="(400)">
+                        <span class="white--text">{{ content.data }}</span>
+                    </delayed-text>
                 </div>
-                <div class="col-9 q-pr-sm q-pt-sm q-pl-sm">
+                <div class="col-8 q-pr-sm q-pl-sm">
                     <flex-content 
-                    v-for="(item, i) in skill.child" :key="i"
+                    v-for="(item, i) in content.child" :key="i"
                     :content="item"
-                    :initialDelay="500"
+                    :initialDelay="500+i*50"
                     :index="i" ></flex-content>
                 </div>
             </div>
@@ -114,22 +113,24 @@ h6{
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import { MyContact } from '../data/MyContact';
-import { Skills } from '../data/Skill';
+import { MiscInfo } from '../data/MiscInfo';
 import Language from '../resources/LanguageService';
 import FlexContent from './sub/FlexContent.vue';
 import FlexLink from './sub/FlexLink.vue';
+import DelayedText from './sub/DelayedText.vue';
 
 @Component({
     components:{
         FlexContent,
-        FlexLink
+        FlexLink,
+        DelayedText
     }
 }
 )
 export default class InfoBoard extends Vue{
     candidate = MyContact;
     string= Language;
-    skills= Skills;
+    info= MiscInfo;
     mounted() {
         setTimeout(()=>{
             this.$refs.board.className += " show";

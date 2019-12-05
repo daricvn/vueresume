@@ -41,6 +41,8 @@
           v-for="(item, i) in content.child" :key="i"
           :icon="item.icon ? item.icon : undefined"
           :color="item.color?item.color:undefined"
+          :outline="item.style=='outline'"
+          :size="item.length ? item.length: undefined"
           :text-color="item.desc ? item.desc:undefined"
           :class="item.style"
           :style="{ transitionDelay: (initialDelay+i*100)}">{{ item.data }}</q-chip>
@@ -50,6 +52,8 @@
       <delayed-text :delay="(initialDelay+index*60)">
         <q-chip :icon="content.icon ? content.icon : undefined"
           :color="content.color?content.color:undefined"
+          :outline="content.style=='outline'"
+          :size="content.length ? content.length: undefined"
           :text-color="content.desc ? content.desc:undefined"
           :class="content.style">{{ content.data }}</q-chip>
       </delayed-text>
